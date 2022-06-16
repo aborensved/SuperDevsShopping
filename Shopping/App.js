@@ -1,12 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import CreateShoppingList from './components/CreateShoppingList';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ShoppingListScreen from './screens/ShoppingListScreen';
+import HomeScreen from './screens/HomeScreen';
+
 
 export default function App() {
+
+  const NativeStack = createNativeStackNavigator()
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <NativeStack.Navigator>
+    <NativeStack.Screen
+      name='HomeScreen'
+      component={HomeScreen}
+      />
+    
+    <NativeStack.Screen
+      name='ShoppingListScreen'
+      component={ShoppingListScreen}
+      />
+      </NativeStack.Navigator>
+    </NavigationContainer>
   );
 }
 
