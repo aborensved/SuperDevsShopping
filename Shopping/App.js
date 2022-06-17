@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import CreateShoppingList from './components/CreateShoppingList';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ShoppingListScreen from './screens/ShoppingListScreen';
+import ShoppingListScreen from './screens/ShoppingListScreen'
 import HomeScreen from './screens/HomeScreen';
 
 

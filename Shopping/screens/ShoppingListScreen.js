@@ -1,21 +1,32 @@
-import {View, Text, Pressable, TextInput, StyleSheet} from 'react-native'
+import {View, Text, Pressable, TextInput, StyleSheet, NativeEventEmitter} from 'react-native'
 import { useNavigation } from "@react-navigation/native";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ShoppingList from '../components/ShoppingList';
 
 const ShoppingListScreen = ({navigation}) => {
 
-    const addItem = () => {
-        console.log('new itemsss')
-        setShopList()
-    }
+    const [shopList, setShopList] = useState([])
+    const [shopInput, setShopInput] = useState('')
 
-    const handleSetShopList = (text) => {
-        setShopList(text)
+    const emitter = new NativeEventEmitter()
+
+    const deleteListener = emitter.addListener("delete", (shopInputName) => {
+        setShopList(prev => prev.filter(shopInput => shopInput !== shopInputName))
+    })
+
+    useEffect(() => {
+        return() => deleteListener.remove()
+    }, [shopList])
+
+    const handleSetShopList = () => {
+        setShopList((prev) => prev.concat(shopInput))
     } 
 
+    const handleShopInput = (text) => {
+        setShopInput(text)
+    }
 
-    const [shopList, setShopList] = useState([])
+   
 
     return(
     <View style={styles.shopListContainer}>
@@ -24,11 +35,11 @@ const ShoppingListScreen = ({navigation}) => {
         />
         <TextInput
         style={styles.textinput}
-        onChangeText={handleSetShopList}
-        value={shopList}
+        onChangeText={handleShopInput}
+        value={shopInput}
       />
           <Pressable
-            onPress={addItem}
+            onPress={handleSetShopList}
             style={({pressed}) => [{opacity: pressed ? 0.5 : 1.0 }]}
             >
             <Text>+</Text>
@@ -56,4 +67,4 @@ const styles = StyleSheet.create({
    
 })
 
-export default ShoppingList;
+export default ShoppingListScreen;

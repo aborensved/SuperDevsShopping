@@ -1,26 +1,49 @@
-import { FlatList } from "react-native";
+import { FlatList, Text, StyleSheet,View, Pressable, NativeEventEmitter} from "react-native";
 
 
 const ShoppingList = ({shopList}) => {
     
-    const _renderItem = ({item: shopItem}) => {
+    
 
+    const emitter = new NativeEventEmitter()
+
+    const handleDelete = () => {
+        emitter.emit('delete', shopInputItem)
+    }
+
+    const _renderItem = ({item: shopInputItem}) => {
+        
         return(
+            <View style={styles.container}>
+                <Text style={styles.text}>{shopInputItem}</Text>
+                <Pressable onPress={handleDelete}>
+                    <Text>X</Text>
 
-            <Text>{shopItem}</Text>
-
+                </Pressable>
+            </View>
         )
-
     }
 
     return(
         <FlatList
         data={shopList}
         renderItem={_renderItem}
-        keyExtractor={(shopItem, index) => index}
+        keyExtractor={(shopInputItem, index) => index}
         />
     )
 
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 15,
+    },
+    text: {
+        fontSize: 30,
+    }
+})
 
 export default ShoppingList;
