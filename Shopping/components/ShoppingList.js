@@ -3,8 +3,6 @@ import { FlatList, Text, StyleSheet,View, Pressable, NativeEventEmitter} from "r
 
 const ShoppingList = ({shopList}) => {
     
-    
-
     const emitter = new NativeEventEmitter()
 
     const handleDelete = () => {

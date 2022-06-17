@@ -4,7 +4,7 @@ import {View, StyleSheet} from 'react-native';
 
 
 const HomeScreen = ({navigation}) => {
-
+    
     return(
         <View style={styles.container}>
         <Header style={styles.Header}/>

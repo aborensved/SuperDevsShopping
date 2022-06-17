@@ -5,6 +5,7 @@ import ShoppingList from '../components/ShoppingList';
 
 const ShoppingListScreen = ({navigation}) => {
 
+ 
     const [shopList, setShopList] = useState([])
     const [shopInput, setShopInput] = useState('')
 
