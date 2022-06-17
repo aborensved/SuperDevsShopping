@@ -1,12 +1,13 @@
 import { FlatList, Text, StyleSheet,View, Pressable, NativeEventEmitter} from "react-native";
+import { useEffect } from "react";
 
 
 const ShoppingList = ({shopList}) => {
-    
+
     const emitter = new NativeEventEmitter()
 
-    const handleDelete = () => {
-        emitter.emit('delete', shopInputItem)
+    const handleDelete = (shopInputItem) => {
+        emitter.emit('delete', (shopInputItem))
     }
 
     const _renderItem = ({item: shopInputItem}) => {
@@ -14,9 +15,8 @@ const ShoppingList = ({shopList}) => {
         return(
             <View style={styles.container}>
                 <Text style={styles.text}>{shopInputItem}</Text>
-                <Pressable onPress={handleDelete}>
-                    <Text>X</Text>
-
+                <Pressable onPress={() => handleDelete(shopInputItem)}>
+                    <Text>X DELETE</Text>
                 </Pressable>
             </View>
         )
@@ -26,7 +26,7 @@ const ShoppingList = ({shopList}) => {
         <FlatList
         data={shopList}
         renderItem={_renderItem}
-        keyExtractor={(shopInputItem, index) => index}
+        keyExtractor={(shopList, index) => index}
         />
     )
 

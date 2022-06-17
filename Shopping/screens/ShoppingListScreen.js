@@ -3,10 +3,9 @@ import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from 'react';
 import ShoppingList from '../components/ShoppingList';
 
-const ShoppingListScreen = ({navigation}) => {
+const ShoppingListScreen = ({ navigation}) => {
 
- 
-    const [shopList, setShopList] = useState([])
+    const [shopList, setShopList] = useState([])    
     const [shopInput, setShopInput] = useState('')
 
     const emitter = new NativeEventEmitter()
@@ -17,7 +16,7 @@ const ShoppingListScreen = ({navigation}) => {
 
     useEffect(() => {
         return() => deleteListener.remove()
-    }, [shopList])
+    }, [shopList]) 
 
     const handleSetShopList = () => {
         setShopList((prev) => prev.concat(shopInput))

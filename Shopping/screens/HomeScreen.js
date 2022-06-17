@@ -1,14 +1,18 @@
 import CreateShoppingList from "../components/CreateShoppingList";
 import Header from "../components/Header";
 import {View, StyleSheet} from 'react-native';
+import { useState } from "react";
 
 
 const HomeScreen = ({navigation}) => {
+
+    
     
     return(
         <View style={styles.container}>
         <Header style={styles.Header}/>
         <CreateShoppingList
+        
         navigation={navigation}
         />
         </View>
