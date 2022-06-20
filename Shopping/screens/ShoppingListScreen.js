@@ -33,36 +33,65 @@ const ShoppingListScreen = ({ navigation}) => {
         <ShoppingList 
         shopList={shopList}
         />
+        <View style={styles.inputContainer}>
         <TextInput
-        style={styles.textinput}
-        onChangeText={handleShopInput}
-        value={shopInput}
-      />
+            style={styles.textinput}
+            onChangeText={handleShopInput}
+            
+            value={shopInput}
+            />
           <Pressable
             onPress={handleSetShopList}
-            style={({pressed}) => [{opacity: pressed ? 0.5 : 1.0 }]}
+            style={({pressed}) => [{opacity: pressed ? 0.5 : 1.0 }, styles.button]}
             >
-            <Text>+</Text>
+            <Text style={styles.buttonText}>+</Text>
             </Pressable>
         </View>
+    </View>
 
     )
 
 }
 
 const styles = StyleSheet.create({
-    textinput: {
-        shadowColor: '#111',
-        shadowOffset: { width: 0, height: 5},
-        shadowOpacity: 1,
-        shadowRadius: 10,
-        elevation: 10,
-        width: '69%',
+    inputContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 15,
+        height: '20%',
+        backgroundColor: 'lightblue',
+        marginBottom: 30, 
     },
+    
+    textinput: {
+        width: '69%',
+        marginHorizontal: 10,
+        borderRadius: 6,
+        padding: 10,
+        backgroundColor: 'white',
+        fontSize: 20,
+    },
+
+    button: {
+        backgroundColor: "dodgerblue",
+        marginHorizontal: 10,
+        borderRadius: 6,
+        width: '20%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+    },
+
+    buttonText: {
+        fontSize: 35,
+        fontWeight: 'bold',
+        color: 'white',
+    },  
    
     shopListContainer: {
-        flex:1,
-        justifyContent: 'space-evenly'
+        flex: 1,
+        justifyContent: 'space-evenly',
     },
    
 })
